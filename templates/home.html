@@ -1,0 +1,114 @@
+{% extends 'index.html' %}
+{% block content %}
+
+
+<div class="chating">
+<button class="open-button" onclick="openForm()">Ρωτήστε μας!</button>
+
+<div class="chat-popup" id="myForm">
+  <form action="/action_page.php" class="form-container">
+    <h1>Chat</h1>
+
+    <label for="msg"><b>Message</b></label>
+    <textarea placeholder="Type message.." name="msg" required></textarea>
+
+    <button type="submit" class="btn">Send</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+</div>
+
+
+<div class="brand d-flex justify-content-center"><h1>e-Stand</h1></div>
+<div class="d-flex justify-content-center">
+<div class='content '>
+    <div class="title">
+        <h2>Ξεκίνα τα ψώνια σου!</h2>
+    </div>
+
+    <div class="info">
+        <input type="text" value="" class="react-autosuggest__input error" placeholder="Γράψε την διεύθυνσή σου" tabindex="1" data-validation="required" data-validation-error-msg="Ακολούθησε τη μορφή: ΟΔΟΣ ΑΡΙΘΜΟΣ ΠΟΛΗ π.χ. Μιχαλακοπούλου 64, Αθήνα" data-validation-has-keyup-event="true">
+        <p class="address">π.χ. Διονύσου 48, Μαρούσι</p>
+    </div>
+
+    <div id="inline-popups">
+        <a href="#test-popup" class="btn button-primary" data-effect="mfp-zoom-in">Παράγγειλε</a>
+    </div>
+</div>
+</div>
+
+
+
+
+<!-- Popup -->
+<div id="test-popup" class="white-popup mfp-with-anim mfp-hide">
+
+                <section class="modal-header-title clearfix">
+                    <p><strong class="modal-heading">Επιβεβαίωση διεύθυνσης</strong></p>
+                    <span class="modal-close" onclick="app.popup.close()"><i class="fa fa-times"></i></span>
+                </section>
+
+                <section class="modal-header-text">
+                    <p id="popup_map_text" rel="1">Παρακαλούμε επιβεβαίωσε ότι η διεύθυνσή σου έχει συμπληρωθεί σωστά.</p>
+                </section>
+
+    <div class="row" id="contatti">
+        <div class="container">
+
+            <div class="modal-header">
+            <div class="row" style="height:auto;">
+                <div class="col-md-6 maps text-center">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3145.157658091383!2d23.704796814678886!3d37.97344985847815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zz4POtc-BzrHPhs61zrnOvw!5e0!3m2!1sel!2sgr!4v1554042877837!5m2!1sel!2sgr" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+                <div class="col-md-6 fieleds">
+                    <h5 class="text-uppercase mt-4 " style="color:#555960;">Διεύθυνση</h5>
+                    <form action="">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control mt-2" placeholder="Πόλη" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control mt-2" placeholder="Περιοχή" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input type="email" class="form-control mt-2" placeholder="Οδός" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input type="number" class="form-control mt-2" placeholder="Αριθμός" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input type="number" class="form-control  mt-2" placeholder="Τ.Κ." required>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <a href="/streetmarkets" class="btn btn-primary btn-outline-success" role="button" aria-disabled="true" style="background-color:#7DB423;border:none;margin-bottom: 40px; margin-top: 10px;">Συνέχεια</a>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</div>
+
+
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js'></script>
+
+{% endblock %}

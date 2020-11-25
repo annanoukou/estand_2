@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+{% block content %}
+<head>
+    
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css'>
+
+      
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<div class="streetmarket">
+    <div class="row orderbut" style="height:auto;">
+        <div class="col-md-12 standsinfo">
+            <h4><strong class="modal-heading">Βρέθηκαν 3 αγορές:</strong></h4>
+            <p>Σημείωση: Η εύρεση των αγορών γίνεται σε ακτίνα 5 χλπ από τη δοθείσα τοποθεσία.</p>
+        </div>
+        {% for q in obj_streetmarket %}
+        <div class="col-md-6 standsopen">
+            <p><strong>{{ q[1] }}</strong></p>
+            <p>{{ q[2] }}</p>
+        </div>
+
+        <div class="col-md-6 standsopenbut">
+            <a href="/streetmarkets/categories/?street={{q[0]}}" class="btn btn-primary btn-outline-success" role="button" aria-disabled="true" style="background-color:#7DB423;border:none;margin-bottom: 40px; margin-top: 10px;">Αγορά</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

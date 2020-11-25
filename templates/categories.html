@@ -1,0 +1,98 @@
+{% extends 'index.html' %}
+
+<head>
+    <script data-require="jquery@3.1.1" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+{% block content %}
+<form method="get">
+    <div class="content-lists">
+        <div class="container">
+            <h2 style="padding-top: 25px;">Φτιάξε τη λίστα σου!</h2>
+            <p style="margin: 0 10px 17px 10px; font-size: 14px;">Σημείωση: Τα αποτελέσματα βασίζονται στη διαθεσημότητα των προϊόντων στη συγκεκριμένη λαϊκη</p>
+            <div class="content-grid col-md-12">
+                <div class="content-lists-categories col-md-6 mt-2">
+                    <h3><strong>Φίλτρα</strong></h3> {% for categories in obj_categories %}
+                    <label class="my_container_geo">
+                        <input id="categories" type="checkbox" value="{{ categories.id }}" name="categories" onclick="check()">{{ categories.name }}
+                        <br>
+                        <span class="checkmark"></span>
+                    </label>
+                    {% endfor %}
+                </div>
+                <div class="content-lists-products col-md-6 mt-2">
+                    {% for product in obj_product %}
+                    <label class="my_container_geo" id="{{ product.id }}-{{ product.id_categories.id }}">
+                        <input type="checkbox" value="{{ product.id }}-{{ product.id_categories.id }}" name="products" onclick="show_producers(this)">{{ product.name }}
+                        <br>
+                        <span class="checkmark"></span>
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+            <div id="inline-popups" style="display: none">
+                <a id="show_producer" href="#test-popup" class="btn button-primary" data-effect="mfp-zoom-in"></a>
+            </div>
+            <div>
+            <button id="total" value="0.00" type="submit" tabindex="2" data-event="Home Order Button" class="button-primary" formaction="orders/">
+                <img src="https://img.icons8.com/material/30/000000/add-shopping-cart.png">0.00€
+            </button>
+        	</div>
+        </div>
+    </div>
+</form>
+<div id="test-popup" class="white-popup mfp-with-anim mfp-hide">
+    <div class="row" id="contatti">
+        <div class="container">
+            <div class="modal-header">
+                <section class="modal-header-title clearfix">
+                    <p><strong id="text-title-popup" class="modal-heading">Πάγκοι για</strong></p>
+                    <span class="modal-close" onclick="app.popup.close()"><i class="fa fa-times"></i></span>
+                </section>
+
+                <section class="modal-header-text">
+                    <p id="popup_map_text" rel="1">Παρακαλούμε επιλέξτε τον Παραγώγο-Πωλητή</p>
+                </section>
+            </div>
+            <div style="overflow-y: scroll;">
+                {% for q in obj_producer_product %}
+                <div class="row orderbut" style="height:auto;">
+                    <div class="col-md-3 standsopen" id="{{ q.id_product.id }}-{{ q.id_product }}" value="{{ q.id_product.id }}-{{ q.id_product }}" name="obj_producer_product">
+                        <p><strong>{{ q.id_producer }}</strong>
+                            <br> Stand #{{ q.id_producer.standnum }}
+                            <br> {{ q.id_product.id_categories }}</p>
+                    </div>
+
+                    <div class="col-md-3 text-center" id="quantity-{{q.id_product.id}}-{{ q.id_product }}">
+                        <div class="quantity buttons_added">
+                            <input type="button" value="-" class="minus">
+                            <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
+                            <input type="button" value="+" class="plus">
+                        </div>
+                        <p>Κιλά</p>
+                    </div>
+
+                    <div class="col-md-2 text-center" id="price-{{q.id_product.id}}-{{ q.id_product }}">
+                        {{ q.price }}€/κλ
+                    </div>
+
+                    <div class="col-md-1 standsopenbut" id="button_add_cart-{{q.id_product.id}}-{{ q.id_product }}">
+                        <a onclick="add_product(this);" href="javascript:void(0);" value="{{ q.price }}" class="btn btn-primary btn-outline-success" role="button" aria-disabled="true" style="background-color:#7DB423;border:none;margin-bottom: 40px; margin-top: 10px;">Προσθήκη στο καλάθι</a>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="row orderbut" style="height:auto;">
+                    <div class="col-md-6">
+                        <p>Προσθέστε σχόλια για τα προιόντα:</p>
+                        <input type="text" class="form-control mt-2" placeholder="Σχόλια" required>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js'></script>
+{% endblock %}
